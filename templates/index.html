@@ -1,0 +1,166 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<!-- Start Banner Hero -->
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5">
+
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="{{ banner.image.url }}" alt="">
+                    </div>
+
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left align-self-center">
+
+                            <h1 class="h1 text-success">
+                                {% trans banner.title %}
+                            </h1>
+
+                            {% if banner.sub_title %}
+                            <h3 class="h2">
+                                {% trans banner.sub_title %}
+                            </h3>
+                            {% endif %}
+
+                            <p>
+                                {% trans banner.text %}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Banner Hero -->
+
+
+<!-- Start Categories of The Month -->
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">
+                {% trans 'Categories of The Month' %}
+            </h1>
+            <p>
+                {% blocktranslate %}
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.
+                {% endblocktranslate %}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-12 col-md-4 p-5 mt-3 d-flex flex-column align-items-center">
+            <a href="#">
+                <img
+                        src="{{ category.image.url }}"
+                        alt="{{ category.name }}"
+                        class="rounded-circle img-fluid border"
+                        style="width:300px; height:300px; border-radius:50%; object-fit:cover"
+                >
+            </a>
+
+            <h5 class="text-center mt-3 mb-3">
+                {{ category.name }}
+            </h5>
+
+            <p class="text-center">
+                <a class="btn btn-success">
+                    {% trans 'Go Shop' %}
+                </a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- End Categories of The Month -->
+
+
+<!-- Start Featured Product -->
+<section class="bg-light">
+    <div class="container py-5">
+
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">
+                    {% trans 'Featured Product' %}
+                </h1>
+                <p>
+                    {% blocktranslate %}
+                    Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident.
+                    {% endblocktranslate %}
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for product in products %}
+            <div class="col-12 col-md-4 mb-4">
+                <!-- d-flex flex-column o'lchamlarni bir xil ushlab turadi -->
+                <div class="card h-100 d-flex flex-column">
+
+                    <!-- PRODUCT IMAGE: balandligi fixed va object-fit container qilindi -->
+                    <a href="{% url 'products:detail' pk=product.pk %}">
+                        <img
+                                src="{{ product.image.url }}"
+                                class="card-img-top"
+                                alt="{{ product.name }}"
+                                style="height: 300px; object-fit: cover; width: 100%;"
+                        >
+                    </a>
+
+                    <!-- flex-grow-1 kartochka ichki qismlarini bir xil pastga tortadi -->
+                    <div class="card-body d-flex flex-column flex-grow-1">
+
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">
+                                ${{ product.get_price }}
+                            </li>
+                        </ul>
+
+                        <!-- PRODUCT NAME -->
+                        <a
+                                href="{% url 'products:detail' pk=product.pk %}"
+                                class="h2 text-decoration-none text-dark"
+                        >
+                            {{ product.name }}
+                        </a>
+
+                        <p class="card-text flex-grow-1">
+                            {{ product.short_description }}
+                        </p>
+
+                        <p class="text-muted mt-auto mb-0">
+                            {% trans 'Reviews (24)' %}
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+<!-- End Featured Product -->
+
+{% endblock %}

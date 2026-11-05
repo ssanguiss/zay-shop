@@ -1,0 +1,398 @@
+{% extends 'layouts/base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .color-list {
+        display: flex;
+        gap: 10px;
+        padding: 0;
+        margin: 10px 0;
+        list-style: none;
+    }
+
+    .color-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        border: 2px solid #ddd;
+        transition: all 0.2s ease;
+    }
+
+    .color-dot:hover {
+        transform: scale(1.15);
+        border-color: #333;
+    }
+
+    .color-dot.active {
+        border: 2px solid black;
+        box-shadow: 0 0 0 2px white inset;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+
+            <!-- Product Image -->
+            <div class="col-lg-5 mt-5">
+
+                <div class="card mb-3">
+                    <img class="card-img img-fluid"
+                         src="{{ product.image.url }}"
+                         alt="{{ product.name }}"
+                         id="product-detail">
+                </div>
+
+                <div class="row">
+
+                    <!-- Previous -->
+                    <div class="col-1 align-self-center">
+                        <a href="#multi-item-example"
+                           role="button"
+                           data-bs-slide="prev">
+                            <i class="text-dark fas fa-chevron-left"></i>
+                            <span class="sr-only">{% trans 'Previous' %}</span>
+                        </a>
+                    </div>
+
+                    <!-- Carousel -->
+                    <div id="multi-item-example"
+                         class="col-10 carousel slide carousel-multi-item"
+                         data-bs-ride="carousel">
+
+                        <div class="carousel-inner product-links-wap"
+                             role="listbox">
+
+                            <div class="carousel-item active">
+                                <div class="row">
+
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid"
+                                                 src="{{ product.image.url }}"
+                                                 alt="{{ product.name }}">
+                                        </a>
+                                    </div>
+
+                                    {% if product.image2 %}
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid"
+                                                 src="{{ product.image2.url }}"
+                                                 alt="{{ product.name }}">
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if product.image3 %}
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid"
+                                                 src="{{ product.image3.url }}"
+                                                 alt="{{ product.name }}">
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Next -->
+                    <div class="col-1 align-self-center">
+                        <a href="#multi-item-example"
+                           role="button"
+                           data-bs-slide="next">
+                            <i class="text-dark fas fa-chevron-right"></i>
+                            <span class="sr-only">{% trans 'Next' %}</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Product Information -->
+            <div class="col-lg-7 mt-5">
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <h1 class="h2">{{ product.name }}</h1>
+
+                        <p class="h3 py-2">
+                            ${{ product.get_price }}
+                        </p>
+
+                        {% if product.is_discount %}
+                            <small>
+                                <strike>${{ product.price }}</strike>
+                            </small>
+                        {% endif %}
+
+                        <p class="py-2">
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-secondary"></i>
+
+                            <span class="list-inline-item text-dark">
+                                {% trans 'Rating 4.8 | 36 Comments' %}
+                            </span>
+                        </p>
+
+
+                        <!-- Brand -->
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>{% trans 'Brand:' %}</h6>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <p class="text-muted">
+                                    <strong>{{ product.brand.name }}</strong>
+                                </p>
+                            </li>
+                        </ul>
+
+
+                        <!-- Description -->
+                        <h6>{% trans 'Description:' %}</h6>
+                        <p>{{ product.long_description }}</p>
+
+
+                        <!-- Colors -->
+                        <ul class="color-list">
+                            {% for color in product.colors.all %}
+                                <li>
+                                    <span class="color-dot"
+                                          style="background-color: {{ color.color }};">
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+
+                        <!-- Form -->
+                        <form action="" method="GET">
+
+                            <input type="hidden"
+                                   name="product-title"
+                                   value="{{ product.name }}">
+
+
+                            <div class="row">
+
+                                <!-- Sizes -->
+                                <div class="col-auto">
+
+                                    <ul class="list-inline pb-3">
+
+                                        <li class="list-inline-item">
+                                            {% trans 'Size :' %}
+
+                                            <input type="hidden"
+                                                   name="product-size"
+                                                   id="product-size"
+                                                   value="S">
+                                        </li>
+
+                                        {% for size in product.sizes.all %}
+
+                                            <li class="list-inline-item">
+                                                <span class="btn btn-success btn-size">
+                                                    {{ size.size }}
+                                                </span>
+                                            </li>
+
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+
+
+                                <!-- Quantity -->
+                                <div class="col-auto">
+
+                                    <ul class="list-inline pb-3">
+
+                                        <li class="list-inline-item text-right">
+                                            {% trans 'Quantity' %}
+
+                                            <input type="hidden"
+                                                   name="product-quanity"
+                                                   id="product-quanity"
+                                                   value="1">
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <span class="btn btn-success"
+                                                  id="btn-minus">
+                                                -
+                                            </span>
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <span class="badge bg-secondary"
+                                                  id="var-value">
+                                                1
+                                            </span>
+                                        </li>
+
+                                        <li class="list-inline-item">
+                                            <span class="btn btn-success"
+                                                  id="btn-plus">
+                                                +
+                                            </span>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Buttons -->
+                            <div class="row pb-3">
+
+                                <div class="col d-grid">
+                                    <button type="submit"
+                                            class="btn btn-success btn-lg"
+                                            name="submit"
+                                            value="buy">
+                                        {% trans 'Buy' %}
+                                    </button>
+                                </div>
+
+                                <div class="col d-grid">
+                                    <button type="submit"
+                                            class="btn btn-success btn-lg"
+                                            name="submit"
+                                            value="addtocart">
+                                        {% trans 'Add To Cart' %}
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Related Products (Yonma-yon turadigan va pastga qarab tushadigan qism) -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="row text-left p-2 pb-3">
+            <h4>{% trans 'Related Products' %}</h4>
+        </div>
+
+        <div class="row">
+            {% for product in related_products %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="product-wap card rounded-0 h-100">
+
+                    <div class="card rounded-0">
+                        <img class="card-img rounded-0 img-fluid"
+                             src="{{ product.image.url }}"
+                             alt="{{ product.name }}">
+
+                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="btn btn-success text-white"
+                                       href="#">
+                                        <i class="far fa-heart"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-success text-white mt-2"
+                                       href="{% url 'products:detail' pk=product.pk %}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-success text-white mt-2"
+                                       href="{% url 'products:cart-create' pk=product.pk %}">
+                                        <i class="fas fa-cart-plus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <a href="{% url 'products:detail' pk=product.pk %}"
+                           class="h3 text-decoration-none">
+                            {{ product.name }}
+                        </a>
+
+                        <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                            <li>
+                                {% for size in product.sizes.all %}
+                                    {{ size.size }}{% if not forloop.last %}/{% endif %}
+                                {% endfor %}
+                            </li>
+                        </ul>
+
+                        <ul class="w-100 list-unstyled d-flex gap-2 mb-0">
+                            <li class="pt-2">
+                                {% for color in product.colors.all %}
+                                    <span class="color-dot"
+                                          style="background-color: {{ color.color }};">
+                                    </span>
+                                {% endfor %}
+                            </li>
+                        </ul>
+
+                        <ul class="list-unstyled d-flex justify-content-center mb-1">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                        </ul>
+
+                        <p class="text-center mb-0 mt-auto">
+                            ${{ product.get_price }}
+                            {% if product.is_discount %}
+                                <small>
+                                    <strike>${{ product.price }}</strike>
+                                </small>
+                            {% endif %}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

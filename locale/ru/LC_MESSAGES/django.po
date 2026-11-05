@@ -1,0 +1,760 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-30 06:57+0300\n"
+"PO-Revision-Date: 2026-10-28 15:42+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\accounts\models.py:8
+msgid "avatar"
+msgstr "аватар"
+
+#: .\blog\models.py:8 .\blog\models.py:22
+msgid "title"
+msgstr "заголовок"
+
+#: .\blog\models.py:9 .\blog\models.py:24
+msgid "sub_title"
+msgstr "подзаголовок"
+
+#: .\blog\models.py:10 .\blog\models.py:25
+msgid "text"
+msgstr "текст"
+
+#: .\blog\models.py:11 .\blog\models.py:23 .\products\models.py:8
+#: .\products\models.py:79
+msgid "image"
+msgstr "изображение"
+
+#: .\blog\models.py:17
+msgid "Banner"
+msgstr "Баннер"
+
+#: .\blog\models.py:18
+msgid "Banners"
+msgstr "Баннеры"
+
+#: .\blog\models.py:27
+msgid "quote"
+msgstr "цитата"
+
+#: .\blog\models.py:37
+msgid "Post"
+msgstr "Пост"
+
+#: .\blog\models.py:38
+msgid "Posts"
+msgstr "Посты"
+
+#: .\blog\models.py:46 .\blog\models.py:70
+msgid "user"
+msgstr "пользователь"
+
+#: .\blog\models.py:52
+msgid "post"
+msgstr "пост"
+
+#: .\blog\models.py:54 .\blog\models.py:76
+msgid "comment"
+msgstr "комментарий"
+
+#: .\blog\models.py:55 .\products\models.py:104
+msgid "created_at"
+msgstr "дата создания"
+
+#: .\blog\models.py:61 .\templates\blog-detail.html:179
+msgid "Comment"
+msgstr "Комментарий"
+
+#: .\blog\models.py:62 .\templates\blog-detail.html:135
+msgid "Comments"
+msgstr "Комментарии"
+
+#: .\blog\models.py:83
+msgid "CommentLike"
+msgstr "Лайк комментария"
+
+#: .\blog\models.py:84
+msgid "CommentLikes"
+msgstr "Лайки комментариев"
+
+#: .\contacts\models.py:5 .\products\models.py:7 .\products\models.py:19
+#: .\products\models.py:53
+msgid "name"
+msgstr "название"
+
+#: .\contacts\models.py:6
+msgid "email"
+msgstr "электронная почта"
+
+#: .\contacts\models.py:7
+msgid "subject"
+msgstr "тема"
+
+#: .\contacts\models.py:8
+msgid "message"
+msgstr "сообщение"
+
+#: .\contacts\models.py:17 .\templates\layouts\footer.html:50
+#: .\templates\layouts\header.html:57
+msgid "Contact"
+msgstr "Контакты"
+
+#: .\contacts\models.py:18
+msgid "Contacts"
+msgstr "Контакты"
+
+#: .\products\models.py:14 .\templates\shop_filters.html:10
+msgid "Category"
+msgstr "Категория"
+
+#: .\products\models.py:15
+msgid "Categories"
+msgstr "Категории"
+
+#: .\products\models.py:25 .\products\models.py:62
+msgid "brand"
+msgstr "бренд"
+
+#: .\products\models.py:26
+msgid "brands"
+msgstr "бренды"
+
+#: .\products\models.py:30 .\products\models.py:36
+msgid "color"
+msgstr "цвет"
+
+#: .\products\models.py:37 .\products\models.py:68
+msgid "colors"
+msgstr "цвета"
+
+#: .\products\models.py:42 .\products\models.py:48
+msgid "size"
+msgstr "размер"
+
+#: .\products\models.py:49 .\products\models.py:74
+msgid "sizes"
+msgstr "размеры"
+
+#: .\products\models.py:57
+msgid "category"
+msgstr "категория"
+
+#: .\products\models.py:81
+msgid "price"
+msgstr "цена"
+
+#: .\products\models.py:84
+msgid "short_description"
+msgstr "краткое описание"
+
+#: .\products\models.py:86
+msgid "long_description"
+msgstr "полное описание"
+
+#: .\products\models.py:87
+msgid "discount"
+msgstr "скидка"
+
+#: .\products\models.py:94
+msgid "wishlist"
+msgstr "список избранного"
+
+#: .\products\models.py:101
+msgid "cart"
+msgstr "корзина"
+
+#: .\products\models.py:112
+msgid "Product"
+msgstr "Товар"
+
+#: .\products\models.py:113 .\templates\layouts\footer.html:28
+msgid "Products"
+msgstr "Товары"
+
+#: .\templates\about.html:65 .\templates\layouts\footer.html:47
+msgid "About Us"
+msgstr "О нас"
+
+#: .\templates\about.html:67
+msgid ""
+"\n"
+"                    Lorem ipsum dolor sit amet, consectetur adipisicing "
+"elit, sed do eiusmod\n"
+"                    tempor incididunt ut labore et dolore magna aliqua. Ut "
+"enim ad minim veniam,\n"
+"                    quis nostrud exercitation ullamco laboris nisi ut "
+"aliquip ex ea commodo consequat.\n"
+"                    "
+msgstr ""
+"\n"
+"                    Краткая информация о нас. Наши услуги направлены на\n"
+"                    предоставление вам наивысшего качества и удобства.\n"
+"                    "
+
+#: .\templates\about.html:86
+msgid "Our Services"
+msgstr "Наши услуги"
+
+#: .\templates\about.html:88
+msgid ""
+"\n"
+"                Lorem ipsum dolor sit amet, consectetur adipisicing elit, "
+"sed do eiusmod\n"
+"                Lorem ipsum dolor sit amet.\n"
+"                "
+msgstr ""
+"\n"
+"                Лучшие виды услуг, предоставляемые для наших клиентов.\n"
+"                "
+
+#: .\templates\about.html:100
+msgid "Delivery Services"
+msgstr "Служба доставки"
+
+#: .\templates\about.html:107
+msgid "Shipping & Return"
+msgstr "Доставка и возврат"
+
+#: .\templates\about.html:114
+msgid "Promotion"
+msgstr "Акции"
+
+#: .\templates\about.html:121
+msgid "24 Hours Service"
+msgstr "Обслуживание 24/7"
+
+#: .\templates\about.html:133 .\templates\shop.html:215
+msgid "Our Brands"
+msgstr "Наши бренды"
+
+#: .\templates\about.html:135 .\templates\shop.html:217
+msgid ""
+"\n"
+"                    Lorem ipsum dolor sit amet, consectetur adipisicing "
+"elit, sed do eiusmod\n"
+"                    Lorem ipsum dolor sit amet.\n"
+"                    "
+msgstr ""
+"\n"
+"                    Самые надежные и ведущие бренды, с которыми мы "
+"сотрудничаем.\n"
+"                    "
+
+#: .\templates\about.html:253
+msgid "Latest Blog Posts"
+msgstr "Последние записи в блоге"
+
+#: .\templates\about.html:254
+msgid "News, updates and useful articles from our team"
+msgstr "Новости, обновления и полезные статьи от нашей команды"
+
+#: .\templates\about.html:271
+msgid "Read more"
+msgstr "Читать далее"
+
+#: .\templates\blog-detail.html:160
+msgid "Show all comments"
+msgstr "Показать все комментарии"
+
+#: .\templates\blog-detail.html:173
+msgid "Leave a Comment"
+msgstr "Оставить комментарий"
+
+#: .\templates\blog-detail.html:180
+msgid "Write your comment..."
+msgstr "Напишите ваш комментарий..."
+
+#: .\templates\blog-detail.html:186
+msgid "Submit"
+msgstr "Отправить"
+
+#: .\templates\cart.html:174
+msgid "Shopping Cart"
+msgstr "Корзина покупок"
+
+#: .\templates\cart.html:223
+msgid "Your cart is empty"
+msgstr "Ваша корзина пуста"
+
+#: .\templates\cart.html:225
+msgid "You haven't added any products to your cart yet."
+msgstr "Вы еще не добавили ни одного товара в корзину."
+
+#: .\templates\cart.html:228
+msgid "Continue Shopping"
+msgstr "Продолжить покупки"
+
+#: .\templates\cart.html:239 .\templates\shop-single.html:306
+msgid "Related Products"
+msgstr "Похожие товары"
+
+#: .\templates\cart.html:257
+msgid "View Product"
+msgstr "Просмотреть товар"
+
+#: .\templates\contact.html:10
+msgid "Contact Us"
+msgstr "Связаться с нами"
+
+#: .\templates\contact.html:12
+msgid ""
+"\n"
+"            Proident, sunt in culpa qui officia deserunt mollit anim id est "
+"laborum.\n"
+"            Lorem ipsum dolor sit amet.\n"
+"            "
+msgstr ""
+"\n"
+"            Если у вас есть вопросы или предложения, свяжитесь с нами.\n"
+"            "
+
+#: .\templates\contact.html:32 .\templates\contact.html:33
+msgid "Name"
+msgstr "Имя"
+
+#: .\templates\contact.html:38 .\templates\contact.html:39
+msgid "Email"
+msgstr "Электронная почта"
+
+#: .\templates\contact.html:45 .\templates\contact.html:46
+msgid "Subject"
+msgstr "Тема"
+
+#: .\templates\contact.html:51 .\templates\contact.html:52
+msgid "Message"
+msgstr "Сообщение"
+
+#: .\templates\contact.html:58
+msgid "Let’s Talk"
+msgstr "Давайте свяжемся"
+
+#: .\templates\index.html:50
+msgid "Categories of The Month"
+msgstr "Категории месяца"
+
+#: .\templates\index.html:53
+msgid ""
+"\n"
+"                Excepteur sint occaecat cupidatat non proident, sunt in "
+"culpa qui officia\n"
+"                deserunt mollit anim id est laborum.\n"
+"                "
+msgstr ""
+"\n"
+"                Ознакомьтесь с самыми популярными категориями товаров в этом "
+"месяце.\n"
+"                "
+
+#: .\templates\index.html:79
+msgid "Go Shop"
+msgstr "Перейти к покупкам"
+
+#: .\templates\index.html:96
+msgid "Featured Product"
+msgstr "Рекомендуемый товар"
+
+#: .\templates\index.html:99
+msgid ""
+"\n"
+"                    Reprehenderit in voluptate velit esse cillum dolore eu "
+"fugiat nulla pariatur.\n"
+"                    Excepteur sint occaecat cupidatat non proident.\n"
+"                    "
+msgstr ""
+"\n"
+"                    Товары, получившие наивысшую оценку от наших клиентов.\n"
+"                    "
+
+#: .\templates\index.html:152
+msgid "Reviews (24)"
+msgstr "Отзывы (24)"
+
+#: .\templates\layouts\footer.html:31
+msgid "Luxury"
+msgstr "Люкс"
+
+#: .\templates\layouts\footer.html:32
+msgid "Sport Wear"
+msgstr "Спортивная одежда"
+
+#: .\templates\layouts\footer.html:33
+msgid "Men's Shoes"
+msgstr "Мужская обувь"
+
+#: .\templates\layouts\footer.html:34
+msgid "Women's Shoes"
+msgstr "Женская обувь"
+
+#: .\templates\layouts\footer.html:35
+msgid "Popular Dress"
+msgstr "Популярная одежда"
+
+#: .\templates\layouts\footer.html:36
+msgid "Gym Accessories"
+msgstr "Аксессуары для спорта"
+
+#: .\templates\layouts\footer.html:37
+msgid "Sport Shoes"
+msgstr "Спортивная обувь"
+
+#: .\templates\layouts\footer.html:43
+msgid "Further Info"
+msgstr "Дополнительная информация"
+
+#: .\templates\layouts\footer.html:46 .\templates\layouts\header.html:48
+msgid "Home"
+msgstr "Главная"
+
+#: .\templates\layouts\footer.html:48
+msgid "Shop Locations"
+msgstr "Адреса магазинов"
+
+#: .\templates\layouts\footer.html:49
+msgid "FAQs"
+msgstr "Частые вопросы"
+
+#: .\templates\layouts\footer.html:82 .\templates\layouts\footer.html:85
+msgid "Email address"
+msgstr "Адрес электронной почты"
+
+#: .\templates\layouts\footer.html:86
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: .\templates\layouts\footer.html:98
+msgid "Copyright &copy; 2021 Company Name"
+msgstr "Авторские права &copy; 2021 Название компании"
+
+#: .\templates\layouts\footer.html:99
+msgid ""
+"Designed by <a rel=\"sponsored\" href=\"https://templatemo.com\" "
+"target=\"_blank\">TemplateMo</a>"
+msgstr ""
+"Дизайн от <a rel=\"sponsored\" href=\"https://templatemo.com\" "
+"target=\"_blank\">TemplateMo</a>"
+
+#: .\templates\layouts\header.html:9
+msgid "Biz bilan bog'lanish"
+msgstr "Связаться с нами"
+
+#: .\templates\layouts\header.html:51
+msgid "About"
+msgstr "О нас"
+
+#: .\templates\layouts\header.html:54
+msgid "Shop"
+msgstr "Магазин"
+
+#: .\templates\layouts\header.html:65 .\templates\layouts\header.html:110
+msgid "Search ..."
+msgstr "Поиск..."
+
+#: .\templates\login.html:10
+msgid "Login"
+msgstr "Вход"
+
+#: .\templates\login.html:243
+msgid "Welcome Back"
+msgstr "С возвращением"
+
+#: .\templates\login.html:244
+msgid "Sign in to your account"
+msgstr "Войдите в свой аккаунт"
+
+#: .\templates\login.html:250 .\templates\register.html:222
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: .\templates\login.html:251 .\templates\register.html:227
+msgid "Enter your username"
+msgstr "Введите имя пользователя"
+
+#: .\templates\login.html:263 .\templates\register.html:268
+msgid "Password"
+msgstr "Пароль"
+
+#: .\templates\login.html:264
+msgid "Enter your password"
+msgstr "Введите ваш пароль"
+
+#: .\templates\login.html:279
+msgid "Remember me"
+msgstr "Запомнить меня"
+
+#: .\templates\login.html:282
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+#: .\templates\login.html:286 .\templates\register.html:297
+msgid "Sign In"
+msgstr "Войти"
+
+#: .\templates\login.html:290
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+#: .\templates\profile.html:9
+msgid "My Profile | E-comm shop"
+msgstr "Мой профиль | Интернет-магазин"
+
+#: .\templates\profile.html:419
+msgid "Member since"
+msgstr "На сайте с"
+
+#: .\templates\profile.html:424
+msgid "Orders"
+msgstr "Заказы"
+
+#: .\templates\profile.html:428 .\templates\profile.html:498
+msgid "Wishlist"
+msgstr "Избранное"
+
+#: .\templates\profile.html:432
+msgid "Reviews"
+msgstr "Отзывы"
+
+#: .\templates\profile.html:441
+msgid "Personal Information"
+msgstr "Личные данные"
+
+#: .\templates\profile.html:442 .\templates\profile.html:609
+msgid "Edit"
+msgstr "Редактировать"
+
+#: .\templates\profile.html:448 .\templates\register.html:233
+msgid "First Name"
+msgstr "Имя"
+
+#: .\templates\profile.html:458 .\templates\register.html:244
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: .\templates\profile.html:469 .\templates\register.html:256
+msgid "Email Address"
+msgstr "Адрес электронной почты"
+
+#: .\templates\profile.html:480
+msgid "Avatar"
+msgstr "Аватар"
+
+#: .\templates\profile.html:490
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: .\templates\profile.html:501 .\templates\profile.html:544
+msgid "View All"
+msgstr "Посмотреть все"
+
+#: .\templates\profile.html:524
+msgid "Add to Cart"
+msgstr "Добавить в корзину"
+
+#: .\templates\profile.html:529 .\templates\profile.html:563
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\templates\profile.html:541
+msgid "Cart"
+msgstr "Корзина"
+
+#: .\templates\profile.html:574
+msgid "Account Settings"
+msgstr "Настройки аккаунта"
+
+#: .\templates\profile.html:579
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+#: .\templates\profile.html:585
+msgid "Notification Settings"
+msgstr "Настройки уведомлений"
+
+#: .\templates\profile.html:590
+msgid "Sign Out"
+msgstr "Выйти"
+
+#: .\templates\profile.html:610
+msgid "Cancel"
+msgstr "Отмена"
+
+#: .\templates\register.html:9
+msgid "Register"
+msgstr "Регистрация"
+
+#: .\templates\register.html:215 .\templates\register.html:293
+msgid "Create Account"
+msgstr "Создать аккаунт"
+
+#: .\templates\register.html:216
+msgid "Join our community"
+msgstr "Присоединяйтесь к нашему сообществу"
+
+#: .\templates\register.html:238
+msgid "Enter your first name"
+msgstr "Введите ваше имя"
+
+#: .\templates\register.html:249
+msgid "Enter your last name"
+msgstr "Введите вашу фамилию"
+
+#: .\templates\register.html:261
+msgid "Enter your email"
+msgstr "Введите ваш email"
+
+#: .\templates\register.html:273
+msgid "Create a password"
+msgstr "Создайте пароль"
+
+#: .\templates\register.html:281
+msgid "Confirm Password"
+msgstr "Подтвердите пароль"
+
+#: .\templates\register.html:286
+msgid "Confirm your password"
+msgstr "Повторите ваш пароль"
+
+#: .\templates\register.html:297
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+#: .\templates\shop-single.html:62
+msgid "Previous"
+msgstr "Назад"
+
+#: .\templates\shop-single.html:117
+msgid "Next"
+msgstr "Вперед"
+
+#: .\templates\shop-single.html:151
+msgid "Rating 4.8 | 36 Comments"
+msgstr "Рейтинг 4.8 | 36 Комментариев"
+
+#: .\templates\shop-single.html:159
+msgid "Brand:"
+msgstr "Бренд:"
+
+#: .\templates\shop-single.html:171
+msgid "Description:"
+msgstr "Описание:"
+
+#: .\templates\shop-single.html:203
+msgid "Size :"
+msgstr "Размер:"
+
+#: .\templates\shop-single.html:231
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\templates\shop-single.html:275
+msgid "Buy"
+msgstr "Купить"
+
+#: .\templates\shop-single.html:284
+msgid "Add To Cart"
+msgstr "Добавить в корзину"
+
+#: .\templates\shop.html:66
+msgid "All"
+msgstr "Все"
+
+#: .\templates\shop.html:69
+msgid "Men's"
+msgstr "Мужские"
+
+#: .\templates\shop.html:72
+msgid "Women's"
+msgstr "Женские"
+
+#: .\templates\shop.html:79
+msgid "Featured"
+msgstr "Рекомендуемые"
+
+#: .\templates\shop.html:80
+msgid "A to Z"
+msgstr "От А до Я"
+
+#: .\templates\shop.html:81
+msgid "Item"
+msgstr "Товар"
+
+#: .\templates\shop_filters.html:4
+msgid "Filters"
+msgstr "Фильтры"
+
+#: .\templates\shop_filters.html:27
+msgid "Price"
+msgstr "Цена"
+
+#: .\templates\shop_filters.html:40
+msgid "Brand"
+msgstr "Бренд"
+
+#: .\templates\shop_filters.html:56
+msgid "Size"
+msgstr "Размер"
+
+#: .\templates\shop_filters.html:69
+msgid "Color"
+msgstr "Цвет"
+
+#: .\templates\shop_filters.html:80
+msgid "Clear Filters"
+msgstr "Сбросить фильтры"
+
+#: .\templates\shop_filters.html:81
+msgid "Apply filters"
+msgstr "Применить фильтры"
+
+#: .\templates\wishlist.html:368
+msgid "My Wishlist"
+msgstr "Мой список избранного"
+
+#: .\templates\wishlist.html:369
+msgid "items"
+msgstr "товары"
+
+#: .\templates\wishlist.html:372
+msgid "Add All to Cart"
+msgstr "Добавить все в корзину"
+
+#: .\templates\wishlist.html:373
+msgid "Clear Wishlist"
+msgstr "Очистить избранное"
+
+#: .\templates\wishlist.html:410
+msgid "View Details"
+msgstr "Подробнее"
+
+#: .\templates\wishlist.html:430
+msgid "Your wishlist is empty"
+msgstr "Ваш список избранного пуст"
+
+#: .\templates\wishlist.html:432
+msgid ""
+"Browse our eco-friendly products and add your favorites to your wishlist."
+msgstr ""
+"Просмотрите наши экологичные товары и добавьте понравившиеся в список "
+"избранного."
+
+#: .\templates\wishlist.html:436
+msgid "Shop Now"
+msgstr "Перейти к покупкам"
+
+#: .\templates\wishlist.html:447
+msgid "Item added to cart successfully!"
+msgstr "Товар успешно добавлен в корзину!"
