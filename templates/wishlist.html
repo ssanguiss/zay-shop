@@ -5,7 +5,6 @@
 {% load static %}
 
 {% block extra_css %}
-
 <style>
     .wishlist-container {
         max-width: 1200px;
@@ -56,10 +55,12 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
+        text-decoration: none;
     }
 
     .btn:hover {
         background: #488a59;
+        color: white;
         transform: translateY(-2px);
         box-shadow: 0 6px 15px rgba(89, 171, 110, 0.4);
     }
@@ -91,6 +92,7 @@
 
     .btn-danger-outline:hover {
         background: #fde8e7;
+        color: #e74c3c;
         box-shadow: none;
     }
 
@@ -146,7 +148,7 @@
         z-index: 1;
     }
 
-    .remove-btn a {
+    .remove-btn {
         text-decoration: none;
         position: absolute;
         top: 10px;
@@ -164,10 +166,11 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
         z-index: 1;
-        font-size: 16px;
+        font-size: 18px;
+        line-height: 1;
     }
 
-    .remove-btn a:hover {
+    .remove-btn:hover {
         background-color: #e74c3c;
         color: white;
         transform: scale(1.1);
@@ -250,10 +253,6 @@
         flex: 1;
         padding: 8px 12px;
         font-size: 13px;
-    }
-
-    .item-actions .btn a {
-        text-decoration: none;
     }
 
     .empty-wishlist {
@@ -361,6 +360,7 @@
     }
 </style>
 {% endblock %}
+
 {% block content %}
 <div class="wishlist-container">
     <div class="page-header">
@@ -374,72 +374,56 @@
         </div>
     </div>
 
-
+    {% if products %}
     <div class="wishlist-grid">
         {% for product in products %}
         <div class="wishlist-item">
             <div class="item-image">
-                <img
-                        src="{{ product.image.url }}"
-                        alt="Eco-friendly Water Bottle"
-                />
-                <button class="remove-btn">
-                    <a href="{% url 'products:wishlist-delete' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">
-                        ×
-                    </a>
-                </button>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                <a href="{% url 'products:wishlist-delete' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}" class="remove-btn">
+                    ×
+                </a>
             </div>
             <div class="item-details">
-                <div class="item-category">{{ product.name }}</div>
-                <h3 class="item-title">{{ product.category.name }}</h3>
+                <div class="item-category">{{ product.category.name }}</div>
+                <h3 class="item-title">{{ product.name }}</h3>
                 <div class="item-price">
                     <div class="current-price">${{ product.get_price }}</div>
                     {% if product.is_discount %}
                     <div class="original-price"><small>${{ product.price }}</small></div>
                     <div class="discount-percentage"> -{{ product.discount }}%</div>
                     {% endif %}
-
                 </div>
                 <div class="item-rating">
                     <div class="stars">★★★★★</div>
                     <div class="rating-count">(124)</div>
                 </div>
                 <div class="item-actions">
-                    <button class="btn btn-outline view-btn">
-                        <a href="{% url 'products:detail' pk=product.pk %}" style="color: green;">
-                            {% trans 'View Details' %}
-                        </a>
-                    </button>
-                    {#
-                    <button class="btn add-to-cart-btn">#}
-                        {# <a style="color: white;" #}
-                              {#
-                              href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">#}
-                            {# {% trans 'Add to Cart' %}#}
-                            {# </a>#}
-                        {#
-                    </button>
-                    #}
+                    <a href="{% url 'products:detail' pk=product.pk %}" class="btn btn-outline view-btn">
+                        {% trans 'View Details' %}
+                    </a>
+                    {% comment %}
+                    <a href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}" class="btn add-to-cart-btn">
+                        {% trans 'Add to Cart' %}
+                    </a>
+                    {% endcomment %}
                 </div>
             </div>
         </div>
-        {% empty %}
-
-        <div class="empty-wishlist">
-            <div class="empty-icon">❤️</div>
-            <h2 class="empty-title">{% trans 'Your wishlist is empty' %}</h2>
-            <p class="empty-message">
-                {% trans 'Browse our eco-friendly products and add your favorites to your wishlist.' %}
-            </p>
-            <button class="btn">
-                <a href="{% url 'products:shop' %}" style="text-decoration: none; color: white;">
-                    {% trans 'Shop Now' %}
-                </a>
-            </button>
-        </div>
         {% endfor %}
     </div>
-
+    {% else %}
+    <div class="empty-wishlist">
+        <div class="empty-icon">❤️</div>
+        <h2 class="empty-title">{% trans 'Your wishlist is empty' %}</h2>
+        <p class="empty-message">
+            {% trans 'Browse our eco-friendly products and add your favorites to your wishlist.' %}
+        </p>
+        <a href="{% url 'products:shop' %}" class="btn">
+            {% trans 'Shop Now' %}
+        </a>
+    </div>
+    {% endif %}
 </div>
 
 <div class="notification">
