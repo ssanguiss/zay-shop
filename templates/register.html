@@ -1,8 +1,5 @@
-{% load i18n %}
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
+{% load i18n static %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,13 +8,11 @@
         :root {
             --primary: #59ab6e;
             --primary-dark: #488a59;
-            --primary-light: #7bc18e;
             --primary-transparent: rgba(89, 171, 110, 0.1);
             --text-dark: #333333;
             --text-light: #ffffff;
             --background: #f9f9f9;
             --error: #e74c3c;
-            --success: #2ecc71;
         }
 
         * {
@@ -45,11 +40,6 @@
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-5px);
         }
 
         .header {
@@ -64,15 +54,8 @@
         .header::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                    135deg,
-                    rgba(255, 255, 255, 0.2) 0%,
-                    rgba(255, 255, 255, 0) 100%
-            );
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
         }
 
         .header h1 {
@@ -94,15 +77,17 @@
 
         .form-group {
             margin-bottom: 20px;
-            position: relative;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--text-dark);
             font-size: 14px;
+        }
+
+        .input-wrap {
+            position: relative;
         }
 
         .form-group input {
@@ -114,22 +99,38 @@
             transition: all 0.3s ease;
         }
 
+        .form-group input.invalid {
+            border-color: var(--error);
+        }
+
         .form-group input:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px var(--primary-transparent);
             outline: none;
         }
 
-        .password-toggle {
-            position: absolute;
-            right: 15px;
-            top: 40px;
-            cursor: pointer;
-            color: #777;
+        .input-wrap input {
+            padding-right: 45px;
         }
 
-        .password-toggle:hover {
-            color: var(--primary);
+        .password-toggle {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            border-radius: 4px;
+        }
+
+        .password-toggle:hover,
+        .password-toggle:focus-visible {
+            background: var(--primary-transparent);
+            outline: none;
         }
 
         .error-message {
@@ -137,6 +138,19 @@
             font-size: 13px;
             margin-top: 5px;
             display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .form-error {
+            background: rgba(231, 76, 60, 0.08);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin: 0 0 20px;
+            font-size: 14px;
         }
 
         .btn {
@@ -174,19 +188,11 @@
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
         }
 
         .login-link a:hover {
             color: var(--primary-dark);
             text-decoration: underline;
-        }
-
-        .logo {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: white;
         }
 
         @media (max-width: 480px) {
@@ -216,78 +222,82 @@
         <p>{% trans 'Join our community' %}</p>
     </div>
     <div class="form-container">
-        <form id="register-form" method="POST">
+        <form id="register-form" method="POST" novalidate>
             {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-error error-message show" role="alert">{{ form.non_field_errors.0 }}</div>
+            {% endif %}
+
             <div class="form-group">
                 <label for="username">{% trans 'Username' %}</label>
-                <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="{% trans 'Enter your username' %}"
-                        required
-                />
-                <div class="error-message" id="username-error"></div>
+                {% translate 'Enter your username' as ph_username %}
+                <input type="text" id="username" name="username"
+                       value="{{ form.username.value|default_if_none:'' }}"
+                       placeholder="{{ ph_username }}" autocomplete="username"
+                       {% if form.username.errors %}class="invalid"{% endif %} required/>
+                <div class="error-message {% if form.username.errors %}show{% endif %}" id="username-error">{{ form.username.errors.0 }}</div>
             </div>
+
             <div class="form-group">
                 <label for="first_name">{% trans 'First Name' %}</label>
-                <input
-                        type="text"
-                        id="first_name"
-                        name="first_name"
-                        placeholder="{% trans 'Enter your first name' %}"
-                        required
-                />
-                <div class="error-message" id="first-name-error"></div>
+                {% translate 'Enter your first name' as ph_first %}
+                <input type="text" id="first_name" name="first_name"
+                       value="{{ form.first_name.value|default_if_none:'' }}"
+                       placeholder="{{ ph_first }}" autocomplete="given-name"
+                       {% if form.first_name.errors %}class="invalid"{% endif %} required/>
+                <div class="error-message {% if form.first_name.errors %}show{% endif %}" id="first-name-error">{{ form.first_name.errors.0 }}</div>
             </div>
+
             <div class="form-group">
                 <label for="last_name">{% trans 'Last Name' %}</label>
-                <input
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        placeholder="{% trans 'Enter your last name' %}"
-                        required
-                />
-                <div class="error-message" id="last-name-error"></div>
+                {% translate 'Enter your last name' as ph_last %}
+                <input type="text" id="last_name" name="last_name"
+                       value="{{ form.last_name.value|default_if_none:'' }}"
+                       placeholder="{{ ph_last }}" autocomplete="family-name"
+                       {% if form.last_name.errors %}class="invalid"{% endif %} required/>
+                <div class="error-message {% if form.last_name.errors %}show{% endif %}" id="last-name-error">{{ form.last_name.errors.0 }}</div>
             </div>
 
             <div class="form-group">
                 <label for="email">{% trans 'Email Address' %}</label>
-                <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="{% trans 'Enter your email' %}"
-                        required
-                />
-                <div class="error-message" id="email-error"></div>
+                {% translate 'Enter your email' as ph_email %}
+                <input type="email" id="email" name="email"
+                       value="{{ form.email.value|default_if_none:'' }}"
+                       placeholder="{{ ph_email }}" autocomplete="email"
+                       {% if form.email.errors %}class="invalid"{% endif %} required/>
+                <div class="error-message {% if form.email.errors %}show{% endif %}" id="email-error">{{ form.email.errors.0 }}</div>
             </div>
 
+            {% translate 'Show password' as show_pw_label %}
             <div class="form-group">
                 <label for="password">{% trans 'Password' %}</label>
-                <input
-                        type="password"
-                        id="password"
-                        name="password1"
-                        placeholder="{% trans 'Create a password' %}"
-                        required
-                />
-                <span class="password-toggle" id="password-toggle">👁️</span>
-                <div class="error-message" id="password-error"></div>
+                {% translate 'Create a password' as ph_password %}
+                <div class="input-wrap">
+                    <input type="password" id="password" name="password1"
+                           placeholder="{{ ph_password }}" autocomplete="new-password"
+                           {% if form.password1.errors %}class="invalid"{% endif %} required/>
+                    <button type="button" class="password-toggle" data-target="password"
+                            aria-label="{{ show_pw_label }}" aria-pressed="false">👁️
+                    </button>
+                </div>
+                <div class="error-message {% if form.password1.errors %}show{% endif %}" id="password-error">{{ form.password1.errors.0 }}</div>
             </div>
 
             <div class="form-group">
                 <label for="confirm-password">{% trans 'Confirm Password' %}</label>
-                <input
-                        type="password"
-                        id="confirm-password"
-                        name="password2"
-                        placeholder="{% trans 'Confirm your password' %}"
-                        required
-                />
-                <span class="password-toggle" id="confirm-password-toggle">👁️</span>
-                <div class="error-message" id="confirm-password-error"></div>
+                {% translate 'Confirm your password' as ph_confirm %}
+                <div class="input-wrap">
+                    <input type="password" id="confirm-password" name="password2"
+                           placeholder="{{ ph_confirm }}" autocomplete="new-password"
+                           {% if form.password2.errors %}class="invalid"{% endif %} required/>
+                    <button type="button" class="password-toggle" data-target="confirm-password"
+                            aria-label="{{ show_pw_label }}" aria-pressed="false">👁️
+                    </button>
+                </div>
+                {% translate 'Passwords do not match' as msg_mismatch %}
+                <div class="error-message {% if form.password2.errors %}show{% endif %}" id="confirm-password-error"
+                     data-mismatch="{{ msg_mismatch }}">{{ form.password2.errors.0 }}</div>
             </div>
 
             <button type="submit" class="btn">{% trans 'Create Account' %}</button>
@@ -301,30 +311,42 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const togglePassword = document.getElementById("password-toggle");
-        const toggleConfirmPassword = document.getElementById(
-            "confirm-password-toggle"
-        );
-        const passwordField = document.getElementById("password");
-        const confirmPasswordField =
-            document.getElementById("confirm-password");
-
-        togglePassword.addEventListener("click", function () {
-            const type =
-                passwordField.getAttribute("type") === "password"
-                    ? "text"
-                    : "password";
-            passwordField.setAttribute("type", type);
-            togglePassword.textContent = type === "password" ? "👁️" : "🔒";
+        // Parolni ko'rsatish / yashirish
+        document.querySelectorAll(".password-toggle").forEach(function (btn) {
+            const field = document.getElementById(btn.dataset.target);
+            btn.addEventListener("click", function () {
+                const show = field.type === "password";
+                field.type = show ? "text" : "password";
+                btn.textContent = show ? "🔒" : "👁️";
+                btn.setAttribute("aria-pressed", show ? "true" : "false");
+            });
         });
 
-        toggleConfirmPassword.addEventListener("click", function () {
-            const type =
-                confirmPasswordField.getAttribute("type") === "password"
-                    ? "text"
-                    : "password";
-            confirmPasswordField.setAttribute("type", type);
-            toggleConfirmPassword.textContent = type === "password" ? "👁️" : "🔒";
+        // Parollar mosligini mijoz tomonida tekshirish
+        const form = document.getElementById("register-form");
+        const pw1 = document.getElementById("password");
+        const pw2 = document.getElementById("confirm-password");
+        const err = document.getElementById("confirm-password-error");
+
+        function clearMismatch() {
+            if (err.textContent === err.dataset.mismatch) {
+                err.textContent = "";
+                err.classList.remove("show");
+                pw2.classList.remove("invalid");
+            }
+        }
+
+        pw1.addEventListener("input", clearMismatch);
+        pw2.addEventListener("input", clearMismatch);
+
+        form.addEventListener("submit", function (e) {
+            if (pw1.value !== pw2.value) {
+                e.preventDefault();
+                err.textContent = err.dataset.mismatch;
+                err.classList.add("show");
+                pw2.classList.add("invalid");
+                pw2.focus();
+            }
         });
     });
 </script>
